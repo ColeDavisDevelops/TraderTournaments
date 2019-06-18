@@ -1,0 +1,344 @@
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Competition Page</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="./assets/css/main.css" />
+	</head>
+
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">Trading Tournament</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="elements.html">Elements</a></li>
+					<li><a href="generic.html">Generic</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div class="my_heading">
+				<h1 style="text-align: center">Tournament Lobby</h1>
+			</div>
+			<div style="text-align: center;margin:auto; width: 50%; border: 1mm dotted;padding:10px; margin-bottom: 50px" >
+				<h3><b>Instructions</b></h3>
+			
+				<p><b>Step One:</b> Before the tournament has started, Fill out a predicted price and click "Predict" in order to send a prediction and staked ETH to the Tournament Contract. Players may make as many predictions as they would like.</p><br>
+				<p><b>Step Two:</b> After the tournament has ended, a settlement price will be recorded and players will be able to press "Claim Winning Prediciton" in order to claim their closest prediction as the winner. </p><br>
+				<p><b>Step Three:</b> After the 24 hour resolution period has ended, the player who claimed the prediction closest to the settlement price will be eligible to withdraw their winnings!</p>
+			</div>
+
+ 											
+		<!-- Main -->
+			<h3 style="text-align: center"><b>Filter by duration</b></h3>
+			<select style="margin: auto;margin-bottom:20px; width: 33%">
+				<option value="">All</option>
+				<option value="Daily">Daily</option>
+				<option value="Weekly">Weekly</option>
+				<option value="Monthly">Monthly</option>
+			<select>
+			<h3 style="text-align: center"><b>Filter by Stakes<b></h3>
+			<select style="margin: auto;margin-bottom:20px; width: 33%">
+				<option value="">All</option>
+				<option value="Low">Low</option>
+				<option value="Medium">Medium</option>
+				<option value="High">High</option>
+			<select>
+
+			
+			<div id=tournaments>
+				<ul id="my_list">
+					<li>
+					<button id="game1_" class="accordion" onclick="accordion('Game1')">Stakes: .01 ETH Status:</button>
+					
+						<div id="Game1" class="w3-container w3-hide">
+
+						
+							<div class="main_content">
+								
+								
+								<div>
+									<header>
+										<h2 style="text-align: center;border-bottom: solid white;margin-bottom: 50px"><b style="color:white">Daily</b></h2>
+									</header>
+									<div class="main_box">
+										<h3 style="text-align: center"><b style="color:white">Total Eth Staked</b></h3>
+										<div class="my_box">
+											<p id="game1_total_eth_staked" style="font-size: 20px; font-weight: bold">Pending...</p>				
+										</div>
+										
+										
+									</div>
+									<div class="main_box">
+										<h3 style="text-align: center"><b style="color:white">Status</b></h3>
+										<div class="my_box">
+											<p id=game1_status style="font-size: 20px; font-weight: bold">pending...</p>				
+										</div>
+										
+									</div>
+									
+						
+									<div class="main_box">
+										<h3 style="text-align: center"><b style="color:white">Settlement Price</b></h3>	
+										<div class="my_box">
+											<p id=game1_settlement_price style="font-size: 20px; font-weight: bold">pending...</p>				
+										</div>
+										
+						
+									</div>
+									<div class="main_box">
+										<h3 style="text-align: center"><b style="color:white">Winning Prediction</b></h3>
+										<div class="my_box">
+											<p id=game1_winning_prediction style="font-size: 20px; font-weight: bold">pending...</p>				
+										</div>
+										
+						
+									</div>
+									<div class="main_box" style="color: white">
+										<h3 style="text-align: center;"><b style="color:white">Player Predictions</b></h3>
+										<button id="game1_refresh_positions" class="button primary fit" style="width:28%;margin: 0 auto;display:block;position:relative;float:none">Refresh</button>
+										<div class="my_box">
+											<p id="player_predictions" style="color: black; font-size: 20px; font-weight: bold">Player has made no predictions...</p>				
+										</div>
+									</div>
+									<div class="main_box_alt">
+										<div class="input_box">
+											<input type="text" name="predict" id="game1_predict" value="" style="background-color: white; width:80%;margin:auto" placeholder="Predicted Price" />
+										</div>
+										<div class="input_box">
+											<button id="game1_predict_it" class="button primary fit" style="width:80%;margin: 0 auto;display:block;position:relative;float:none">Predict</button>
+										</div>
+										<div class="input_box">
+						
+											<button id="game1_claim_winning_predictions" class="button primary fit" style="width:80%;margin: 0 auto;display:block;position:relative;float:none">Claim Winning Prediction</button>
+										</div>
+										<div class="input_box">
+											
+											<button id="game1_collect_winnings" class="button primary fit" style="width:80%;margin: 0 auto;display:block;position:relative;float:none">Collect Winnings</button>
+											
+										</div>
+										      
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</li>
+					<li>
+						<button id="game2_" class="accordion" onclick="accordion('Game2')">Stakes: .01 ETH Status:</button>
+					
+						<div id="Game2" class="w3-container w3-hide">
+
+
+							<div class="main_content">
+								
+								
+								<header>
+									<h2 style="text-align: center"><b>Weekly</b></h2>
+								</header>
+								<div class="main_box">
+									<div class="my_box">
+										<p id="game2_total_eth_staked" style="font-size: 20px; font-weight: bold">Pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Total Eth Staked</b></h3>
+									
+								</div>
+								<div class="main_box">
+									<div class="my_box">
+										<p id=game2_status style="font-size: 20px; font-weight: bold">pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Status</b></h3>
+								</div>
+								
+					
+								<div class="main_box_half">
+									<div class="my_box">
+										<p id=game2_settlement_price style="font-size: 20px; font-weight: bold">pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Settlement Price</b></h3>
+					
+								</div>
+								<div class="main_box_half">
+									<div class="my_box">
+										<p id=game2_winning_prediction style="font-size: 20px; font-weight: bold">pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Winning Prediction</b></h3>
+					
+								</div>
+								<div class="main_box_alt">
+									<div class="input_box">
+										<input type="text" name="predict" id="predict" value="" style="background-color: white" placeholder="Predicted Price" />
+									</div>
+									<div class="input_box">
+										<button id="predict_it" class="button primary fit">Predict</button>
+									</div>
+									<div class="main_box_half_alt">
+					
+										<button id="claim_winning_predictions" class="button primary fit">Claim Winning Prediction</button>
+									</div>
+									<div class="main_box_half_alt">
+										
+										<button id="collect_winnings" class="button primary fit">Collect Winnings</button>
+										
+									</div>
+									<div class="main_box" style="border-style: groove; background-color: rgb(87, 87, 87);color: white">
+										<h3 style="text-align: center;"><b style="color:white">Player Predictions</b></h3>
+										<button id="refresh_positions">Refresh Positions</button>
+										<div class="my_box">
+											<p id="player_predictions" style="color: black; font-size: 20px; font-weight: bold">Player has made no predictions...</p>				
+										</div>
+									</div>      
+								</div>	
+								
+								
+									
+								
+							</div>
+						</div>
+					</li>
+					<li>
+						<button id="game3_" class="accordion" onclick="accordion('Game3')">Stakes: .01 ETH Status:</button>					
+						<div id="Game3" class="w3-container w3-hide">
+							<div class="main_content">
+								
+								
+								
+							
+								<header>
+									<h2 style="text-align: center"><b>Monthly</b></h2>
+								</header>
+								<div class="main_box">
+									<div class="my_box">
+										<p id="game3_total_eth_staked" style="font-size: 20px; font-weight: bold">Pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Total Eth Staked</b></h3>
+									
+								</div>
+								<div class="main_box">
+									<div class="my_box">
+										<p id=game3_status style="font-size: 20px; font-weight: bold">pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Status</b></h3>
+								</div>
+								
+					
+								<div class="main_box_half">
+									<div class="my_box">
+										<p id=game3_settlement_price style="font-size: 20px; font-weight: bold">pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Settlement Price</b></h3>
+					
+								</div>
+								<div class="main_box_half">
+									<div class="my_box">
+										<p id=game3_winning_prediction style="font-size: 20px; font-weight: bold">pending...</p>				
+									</div>
+									<h3 style="text-align: center"><b>Winning Prediction</b></h3>
+					
+								</div>
+								<div class="main_box_alt">
+									<div class="input_box">
+										<input type="text" name="predict" id="predict" value="" style="background-color: white" placeholder="Predicted Price" />
+									</div>
+									<div class="input_box">
+										<button id="predict_it" class="button primary fit">Predict</button>
+									</div>
+									<div class="main_box_half_alt">
+					
+										<button id="claim_winning_predictions" class="button primary fit">Claim Winning Prediction</button>
+									</div>
+									<div class="main_box_half_alt">
+										
+										<button id="collect_winnings" class="button primary fit">Collect Winnings</button>
+										
+									</div>
+									<div class="main_box" style="border-style: groove; background-color: rgb(87, 87, 87);color: white">
+										<h3 style="text-align: center;"><b style="color:white">Player Predictions</b></h3>
+										<button id="refresh_positions">Refresh Positions</button>
+										<div class="my_box">
+											<p id="player_predictions" style="color: black; font-size: 20px; font-weight: bold">Player has made no predictions...</p>				
+										</div>
+									</div>      
+								</div>
+							</div>
+									
+								
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+			
+
+		
+	
+		
+			
+ 		
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Accumsan montes viverra</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+						</section>
+						<section>
+							<h4>Sem turpis amet semper</h4>
+							<ul class="alt">
+								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+								<li><a href="#">Etiam vel lorem sed amet.</a></li>
+								<li><a href="#">Felis enim feugiat viverra.</a></li>
+								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Magna sed ipsum</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+
+        <!-- Scripts -->
+			<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+            <script src="./app.js"></script>
+            
+	</body>
+</html>

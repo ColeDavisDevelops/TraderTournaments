@@ -11,7 +11,7 @@ app.use(express.static('build/contracts'));
 app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/client/index.html`);
   });
- 
+  
   app.get('*', (req, res) => {
     res.status(404);
     res.send('Ooops... this URL does not exist');

@@ -14,8 +14,16 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="./assets/css/main.css" />
+		<section id="banner" style="border-bottom: solid">
+					
+			<div class="inner">
+					<h1>No Limit Prediction Tournament</h1>
+				
+			</div>
+					
+		</section>
 	</head>
-
+	
 	<body class="is-preload">
 
 		<!-- Header -->
@@ -36,37 +44,20 @@
 			</nav>
 
 		<!-- Heading -->
-			<section id="banner">
-					
-				<div class="inner">
-					<h1>No Limit Predictions</h1>
-				</div>
+			
+			<div style="text-align: center;margin:auto; width: 50%; border: 1mm dotted;padding:30px; margin-bottom: 50px; margin-top: 50px">
+				<h3 style="margin-bottom: 20px"><b>Instructions</b></h3>
 				
-			</section>
-			<div style="text-align: center;margin:auto; width: 50%; border: 1mm dotted;padding:10px; margin-bottom: 50px" >
-				<h3><b>Instructions</b></h3>
-				
-				<p><b>Step One:</b> Before the tournament has started, Fill out a predicted price and click "Predict" in order to send a prediction and staked ETH to the Tournament Contract. Players may make as many predictions as they would like.</p><br>
-				<p><b>Step Two:</b> After the tournament has ended, a settlement price will be recorded and players will be able to press "Claim Winning Prediciton" in order to claim their closest prediction as the winner. </p><br>
-				<p><b>Step Three:</b> After the 24 hour resolution period has ended, the player who claimed the prediction closest to the settlement price will be eligible to withdraw their winnings!</p>
+				<p><b>Step One:</b> <br> Before a tournament has started, players may fill out a predicted price and click "Predict" in order to send a prediction and staked ETH to the Tournament Contract. Players may make as many predictions as they wish.</p><br>
+				<p><b>Step Two:</b> <br> After the tournament has ended, a settlement price will be recorded and players can press "Claim Winning Prediciton" in order to claim their most accurate prediction as the winner. The current closest claimed prediction will be on display so players only have to claim if their prediciton is more accurate! </p><br>
+				<p><b>Step Three:</b> <br> After the 24 hour resolution period has concluded, the player who claimed the prediction closest to the settlement price will be eligible to withdraw their winnings!</p></p>
+				<p><b style="margin-bottom:20px">Note: A 2% fee is applied to the total prize pool to be collected by Trader Tournaments and the affiliated Tournament creator. More information at the bottom of this page!</b>
 			</div>
  											
 		<!-- Main -->
-			<h3 style="text-align: center"><b>Filter by duration</b></h3>
-			<select style="margin: auto;margin-bottom:20px; width: 33%">
-				<option value="">All</option>
-				<option value="Daily">Daily</option>
-				<option value="Weekly">Weekly</option>
-				<option value="Monthly">Monthly</option>
-			<select>
-			<h3 style="text-align: center"><b>Filter by Stakes<b></h3>
-			<select style="margin: auto;margin-bottom:20px; width: 33%">
-				<option value="">All</option>
-				<option value="Low">Low</option>
-				<option value="Medium">Medium</option>
-				<option value="High">High</option>
-			<select>
-
+			
+			<h3 style="text-align: center"><b>Filter by Name<b></h3>
+            <input name="searchName" type="text"  id="my_input" class="search_name" style="width:33%" placeholder="Search for tournament name..."/>
 			
 			<div class=tournaments>
 				
@@ -91,11 +82,13 @@
 				<div class="inner">
 					<div class="content">
 						<section>
-							<h3>Accumsan montes viverra</h3>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+							<h3>About</h3>	
+							<p>Trader Tournaments seeks to make innovative competitive mediums for participants to exercise skills against one another. Hosting these competitions on Ethereum ensures that Trader Tournaments NEVER has access to user funds. We believe its better to have funds controlled by lines of code as opposed to a human trust element which historically has shown to lead to corruption.<br><br>  </p>
+							<h3>Fees</h3>
+							<p>At the valid conclusion of a tournament, a 2% fee is reserved to be equally distributed between Trader Tournaments and the Tournament Creator. We are excited to provide anyone the ability to create and promote their own custom tournaments! No coding experience needed, simply use our Tournament Creator portal, and whichever address you use to create a tournament will be credited half the fees at the tournaments conclusion!</p>
 						</section>
 						<section>
-							<h4>Sem turpis amet semper</h4>
+							<h4>Creator Portal</h4>
 							<ul class="alt">
 								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
 								<li><a href="#">Etiam vel lorem sed amet.</a></li>
@@ -104,7 +97,7 @@
 							</ul>
 						</section>
 						<section>
-							<h4>Magna sed ipsum</h4>
+							<h4>Social</h4>
 							<ul class="plain">
 								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
 								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>

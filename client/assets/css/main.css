@@ -1796,7 +1796,7 @@ ul.icons {
 #banner {
   -ms-flex-align: center;
   -ms-flex-pack: center;
-  background-color: #111111;
+  background-color: green;
   color: rgba(255, 255, 255, 0.5);
   -moz-align-items: center;
   -webkit-align-items: center;
@@ -1816,8 +1816,8 @@ ul.icons {
   background-size: cover;
   border-top: 0;
   display: -ms-flexbox;
-  height: 35rem !important;
-  min-height: 35rem;
+  height: 15rem !important;
+  min-height: 15rem;
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -2009,7 +2009,7 @@ ul.icons {
     width: 100%;
     z-index: 1; }
   #banner:after {
-    background: linear-gradient(135deg, #ce1b28 0%, #111111 74%);
+    background: linear-gradient(135deg,black, 0%, green 74%);
     content: ' ';
     display: block;
     height: 100%;
@@ -2017,8 +2017,8 @@ ul.icons {
     opacity: 0.6;
     position: absolute;
     top: 0;
-    webkit-linear-gradientidth: 100%;
     width: 100%;
+  
     z-index: 1; }
   #banner.small {
     height: 30vh !important;
@@ -2930,10 +2930,12 @@ body.is-menu-visible #menu {
 }
 
 .my_heading {
-  background: lightblue;
+  
+  background: green;
   border-bottom: 1mm solid;
   margin-bottom: 50px;
   padding-top: 15px;
+  
 
 }
 .my_input {
@@ -2990,7 +2992,7 @@ body.is-menu-visible #menu {
   padding-top: 50px;
   margin-top: 50px;
   overflow:auto;
-  background:lightblue;
+  background:darkgreen;
 }
 
 #my_list { 

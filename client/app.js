@@ -710,7 +710,7 @@ window.addEventListener('load', function() {
 				var time = result.c;
 			
 				var _time = new Date(time*1000);
-				console.log(time);
+			
 				
 				game.competition_duration = _time;
 			} else {

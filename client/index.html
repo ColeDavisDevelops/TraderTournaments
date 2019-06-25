@@ -51,7 +51,7 @@
 				<p><b>Step One:</b> <br> Before a tournament has started, players may fill out a predicted price and click "Predict" in order to send a prediction and staked ETH to the Tournament Contract. Players may make as many predictions as they wish.</p><br>
 				<p><b>Step Two:</b> <br> After the tournament has ended, a settlement price will be recorded and players can press "Claim Winning Prediciton" in order to claim their most accurate prediction as the winner. The current closest claimed prediction will be on display so players only have to claim if their prediciton is more accurate! </p><br>
 				<p><b>Step Three:</b> <br> After the 24 hour resolution period has concluded, the player who claimed the prediction closest to the settlement price will be eligible to withdraw their winnings!</p></p>
-				<p><b style="margin-bottom:20px">Note: A 2% fee is applied to the total prize pool to be collected by Trader Tournaments and the affiliated Tournament creator. More information at the bottom of this page!</b>
+				<p><b style="margin-bottom:20px">Note: A 2% fee is applied to the total prize pool to be collected by Trader Tournaments and the affiliated Tournament creator. We welcome all to create, promote, and profit from their own custom Tournaments <a href="#creator">here!</a></b>
 			</div>
  											
 		<!-- Main -->
@@ -79,24 +79,40 @@
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="inner">
+				<div class="inner" id="creator">
+							<h1 style="text-align: center; margin-bottom: 20px">Create your own Tournament!</h1>
+							<div style="text-align: center;margin:auto; width: 100%; border: 1mm solid;padding:10px; margin-bottom: 50px" >
+								<h3 style="text-align: center; margin-bottom: 10px"><b>1. Create a Tournament Name</b></h3>
+								<input name="Tournament_name" type="text" min="0" id="my_input" style="width:33%" placeholder="... type your Tournament Name here!"/>
+								<h3 style="text-align: center; margin-bottom: 10px"><b>2. Select the Tournament Asset</b></h3>
+								<select id="Tournament_asset" style="margin: auto;margin-bottom:50px; width: 33%">
+									<option value="Ethereum">Ethereum</option>
+								</select>
+								<h3 style="text-align: center; margin-bottom: 10px"><b>3. Choose Tournament Duration</b></h3>
+								<select id="tournament_duration" style="margin: auto;margin-bottom:50px; width: 33%">
+									<option value=60>Hourly</option>
+									<option value=1440>Daily</option>
+									<option value=1080>Weekly</option>
+									<option value=43800>Monthly</option>
+								</select>
+								<h3 style="text-align: center; margin-bottom: 10px"><b>4. Choose when the Tournament starts (minutes)<b></h3>
+								<input style="width:33%; color:black" name="Tournament_start" type="number" min="0" id="my_input" placeholder="... time to start in minutes"/>
+								
+								<h3 style="text-align: center; margin-bottom: 10px"><b>5. Choose the cost to predict (wei)<b></h3>
+								<input style="width:33%; color:black" name="prediction_cost" type="number" min="1000000000000000" id="my_input" placeholder="... Prediciton cost in wei"/>
+								<h3 style="text-align: center; margin-bottom: 10px"><b>6. Press "Create Tournament" !<b></h3>
+								<button id="test" class="button primary fit">Create Tournament</button>
+				
+							</div>
+					<div class="copyright">
+								
+					</div>
 					<div class="content">
 						<section>
 							<h3>About</h3>	
 							<p>Trader Tournaments seeks to make innovative competitive mediums for participants to exercise skills against one another. Hosting these competitions on Ethereum ensures that Trader Tournaments NEVER has access to user funds. We believe its better to have funds controlled by lines of code as opposed to a human trust element which historically has shown to lead to corruption.<br><br>  </p>
 							<h3>Fees</h3>
 							<p>At the valid conclusion of a tournament, a 2% fee is reserved to be equally distributed between Trader Tournaments and the Tournament Creator. We are excited to provide anyone the ability to create and promote their own custom tournaments! No coding experience needed, simply use our Tournament Creator portal, and whichever address you use to create a tournament will be credited half the fees at the tournaments conclusion!</p>
-						</section>
-						<section>
-							<h4>Creator Portal</h4>
-							<ul class="alt">
-								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
-								<li><a href="#">Etiam vel lorem sed amet.</a></li>
-								<li><a href="#">Felis enim feugiat viverra.</a></li>
-								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
-							</ul>
-						</section>
-						<section>
 							<h4>Social</h4>
 							<ul class="plain">
 								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
@@ -105,10 +121,9 @@
 								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
 							</ul>
 						</section>
+
 					</div>
-					<div class="copyright">
-						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
-					</div>
+					
 				</div>
 			</footer>
 

@@ -1,6 +1,18 @@
-var web3 = window.web3;
-window.addEventListener('load', function() {
 
+
+
+window.addEventListener('load', function() {
+		// WEB3 CONNECTION
+	if (typeof web3 !== 'undefined') {
+		console.log("tst");
+		web3 = new Web3(web3.currentProvider);
+	} else {
+		console.log("ts2t");
+		// set the provider you want from Web3.providers
+
+	}
+	var web3 = window.web3;
+	var account = web3.eth.accounts[0];
 	function Game(_tournament_instance) {
 		this.tournament_instance = _tournament_instance
 		this.settlement_price;
@@ -21,16 +33,10 @@ window.addEventListener('load', function() {
 		this.duration;
 		this.total_eth;
 		this._wei;
+		this.winners;
 	};
 
-	// WEB3 CONNECTION
-	if (typeof web3 !== 'undefined') {
-		web3 = new Web3(web3.currentProvider);
-	} else {
-		// set the provider you want from Web3.providers
-		web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-	}
-	var account = web3.eth.accounts[0];
+	
 
 	// WEB3 TESTS
 	console.log(web3.isConnected());
@@ -576,7 +582,7 @@ window.addEventListener('load', function() {
 				$("div.tournaments").append(`
 				<ul id="my_list">
 					<li>
-						<button id="game${i}_" class="accordion" onclick="accordion('Game${i}')">Stakes: .0${i} ETH Status:</button>
+						<button id="game${i}_" class="accordion" onclick="accordion('Game${i}')">MetaMask not detected! </button>
 								
 						<div id="Game${i}" class="w3-container w3-hide">
 
@@ -614,7 +620,7 @@ window.addEventListener('load', function() {
 						
 									</div>
 									<div class="main_box">
-										<h3 style="text-align: center"><b style="color:white">Winning Prediction</b></h3>
+										<h3 style="text-align: center"><b style="color:white">Winners/ Winning Prediction</b></h3>
 										<div class="my_box">
 											<p id=game${i}_winning_prediction style="font-size: 20px; font-weight: bold">pending...</p>				
 										</div>
@@ -834,6 +840,13 @@ window.addEventListener('load', function() {
 					console.log(err);
 				}
 			});
+			game.tournament_instance.winners.call(function(err, result) {
+				if(!err) {
+					game.winners = result.c[0];
+				} else {
+					console.log(err);
+				}
+			});
 			game.tournament_instance.winning_prediction.call(function(err, result) {
 				if (!err) {
 					var _result = result.c[0] / 100;
@@ -841,7 +854,7 @@ window.addEventListener('load', function() {
 					while (node.firstChild) {
 						node.removeChild(node.firstChild);
 					}
-					node.appendChild(document.createTextNode(result.c[0] + " ETH/USD"));
+					node.appendChild(document.createTextNode("winners: " + game.winners + " || " + result.c[0] + " ETH/USD"));
 				} else {
 					console.log(err);
 				}

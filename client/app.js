@@ -20,6 +20,7 @@ window.addEventListener('load', function() {
 		this.resolution;
 		this.duration;
 		this.total_eth;
+		this._wei;
 	};
 
 	// WEB3 CONNECTION
@@ -85,7 +86,7 @@ window.addEventListener('load', function() {
 			"type": "event"
 		}
 	]);
-	var factory_address = "0x92771DF50b5F23931E562c386e2a253Dff636e67";
+	var factory_address = "0x7c53b7ede081432fc9519b63879c5df62ffb0a33";
 	var factory_instance = factory_abi.at(factory_address);
 
 	var tournament_abi = web3.eth.contract([
@@ -289,25 +290,6 @@ window.addEventListener('load', function() {
 		},
 		{
 			"constant": true,
-			"inputs": [
-				{
-					"name": "",
-					"type": "address"
-				}
-			],
-			"name": "is_winner",
-			"outputs": [
-				{
-					"name": "",
-					"type": "bool"
-				}
-			],
-			"payable": false,
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"constant": true,
 			"inputs": [],
 			"name": "winning_prediction",
 			"outputs": [
@@ -457,9 +439,37 @@ window.addEventListener('load', function() {
 			"type": "function"
 		},
 		{
+			"constant": false,
+			"inputs": [],
+			"name": "withdraw_fees",
+			"outputs": [],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
 			"constant": true,
 			"inputs": [],
 			"name": "cost_to_predict",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "balance",
 			"outputs": [
 				{
 					"name": "",
@@ -519,6 +529,10 @@ window.addEventListener('load', function() {
 				{
 					"name": "duration_minutes",
 					"type": "uint256"
+				},
+				{
+					"name": "_creator",
+					"type": "address"
 				}
 			],
 			"payable": false,
@@ -529,30 +543,6 @@ window.addEventListener('load', function() {
 			"payable": true,
 			"stateMutability": "payable",
 			"type": "fallback"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"name": "price",
-					"type": "string"
-				}
-			],
-			"name": "LogPriceUpdated",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": false,
-					"name": "description",
-					"type": "string"
-				}
-			],
-			"name": "LogNewOraclizeQuery",
-			"type": "event"
 		}
 	]);
 
@@ -633,14 +623,14 @@ window.addEventListener('load', function() {
 									</div>
 									<div class="main_box" style="color: white">
 										<h3 style="text-align: center;"><b style="color:white">Player Predictions</b></h3>
-										<button id="game${i}_refresh_positions" class="button primary fit" style="width:28%;margin: 0 auto;display:block;position:relative;float:none">Refresh</button>
+										
 										<div class="my_box">
 											<p id="game${i}_player_predictions" style="color: black; font-size: 20px; font-weight: bold">Player has made no predictions...</p>				
 										</div>
 									</div>
 									<div class="main_box_alt">
 										<div class="input_box">
-											<input type="text" name="predict" id="game${i}_predict" value="" style="background-color: white; width:80%;margin:auto" placeholder="Predicted Price" />
+											<input type="text" name="predict" id="game${i}_predict" value="" style="background-color: white; width:80%; margin:auto" placeholder="Predicted Price" />
 										</div>
 										<div class="input_box">
 											<button id="game${i}_predict_it" class="button primary fit" style="width:80%;margin: 0 auto;display:block;position:relative;float:none">Predict</button>
@@ -670,8 +660,13 @@ window.addEventListener('load', function() {
 		if (web3.eth.accounts[0] !== account) {
 			account = web3.eth.accounts[0];
 		}
+		var node = document.getElementById(div + "player_predictions");
+		
+		
 		game.tournament_instance.cost_to_predict.call(function(err, result) {
 			if (!err) {
+		
+				game._wei = (10 ** result.e); 
 				game.cost = (10 ** result.e) / (10 ** 18);
 			} else {
 				console.log(err);
@@ -815,8 +810,8 @@ window.addEventListener('load', function() {
 			game.tournament_instance.total_prediction_stake_pool.call(function(err, result) {
 				if (!err) {
 
-					var wei = (result.c[0] / 10) * (10 ** result.e);
-					game.total_eth = wei / (10 ** 18);
+					
+					game.total_eth = (((10 ** result.e) * result.c) / (10 ** 18) ) / 100;
 					var node = document.getElementById(div + "total_eth_staked");
 					while (node.firstChild) {
 						node.removeChild(node.firstChild);
@@ -841,7 +836,7 @@ window.addEventListener('load', function() {
 			});
 			game.tournament_instance.winning_prediction.call(function(err, result) {
 				if (!err) {
-			
+					var _result = result.c[0] / 100;
 					var node = document.getElementById(div + "winning_prediction");
 					while (node.firstChild) {
 						node.removeChild(node.firstChild);
@@ -914,14 +909,14 @@ window.addEventListener('load', function() {
 			
 		}, 200);
 		$("#" + div + "predict_it").on('click', function () {
-			game.tournament_instance.predict(document.getElementById(div + "predict").value, {value: game.cost, gas: 3000000}, function (err, result) {
+			game.tournament_instance.predict(document.getElementById(div + "predict").value, {value: game._wei, gas: 3000000}, function (err, result) {
 				if (!err) {
 					console.log(result);
 				}
 				console.log(err);
 			});
 		});
-		$('#' + div + 'refresh_positions').on('click', function () {
+		$('#' + div).on('click', function () {
 			var node = document.getElementById(div + "player_predictions");
 			while (node.firstChild) {
 				node.removeChild(node.firstChild);

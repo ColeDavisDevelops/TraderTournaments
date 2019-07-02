@@ -1,18 +1,18 @@
-
-
-
 window.addEventListener('load', function() {
-		// WEB3 CONNECTION
+	// WEB3 CONNECTION
 	if (typeof web3 !== 'undefined') {
-		console.log("tst");
+	
 		web3 = new Web3(web3.currentProvider);
 	} else {
-		console.log("ts2t");
+
 		// set the provider you want from Web3.providers
 
 	}
 	var web3 = window.web3;
+	// set the client account
 	var account = web3.eth.accounts[0];
+
+	// define the game object
 	function Game(_tournament_instance) {
 		this.tournament_instance = _tournament_instance
 		this.settlement_price;
@@ -34,7 +34,7 @@ window.addEventListener('load', function() {
 		this.total_eth;
 		this._wei;
 		this.winners;
-	};
+	}
 
 	
 
@@ -43,6 +43,7 @@ window.addEventListener('load', function() {
 	var version = web3.version.api;
 	console.log(version); 
 
+	// initialize factory contract
 	var factory_abi = web3.eth.contract([
 		{
 			"constant": false,
@@ -92,9 +93,10 @@ window.addEventListener('load', function() {
 			"type": "event"
 		}
 	]);
-	var factory_address = "0x7c53b7ede081432fc9519b63879c5df62ffb0a33";
+	var factory_address = "0xcaa36e15bd4f2b3243c3afd265fd086c1c5c6b05";
 	var factory_instance = factory_abi.at(factory_address);
 
+	// set tournament_abi for factory
 	var tournament_abi = web3.eth.contract([
 		{
 			"constant": true,
@@ -553,32 +555,29 @@ window.addEventListener('load', function() {
 	]);
 
 
-
-	$("#test").on('click', function() {
-		var address = factory_instance.createToken(document.getElementsByName("Tournament_name")[0].value, document.getElementById("Tournament_asset").value, document.getElementsByName("prediction_cost")[0].value, document.getElementsByName("Tournament_start")[0].value, document.getElementById("tournament_duration").value, function(err, result) {
+	// on click creates a tournament_instance with user inputs
+	$("#createTournament").on('click', function() {
+		factory_instance.createToken(document.getElementsByName("Tournament_name")[0].value, document.getElementById("Tournament_asset").value, document.getElementsByName("prediction_cost")[0].value, document.getElementsByName("Tournament_start")[0].value, document.getElementById("tournament_duration").value, function(err, result) {
 			if (!err) {
 				console.log(result);
 			}
 		});
 	});
-	
+	// Event listener
+	// retrieves all created tournaments and displays their info and controls on the page
 	factory_instance.contractCreated({}, {fromBlock: 0, toBlock: 'latest'}).get(function(err, result) {
 		if (!err) {
-			console.log(result[0].args.newAddress);
-			console.log(result.length);
+			// iterates through all the created contracts
 			for (var i=0;i<result.length;i++) {
-				console.log(result[i].args.newAddress);
+				// DATA
 				var address = result[i].args.newAddress;
 				var instance = tournament_abi.at(address);
 				var Tournament = new Game(instance);
-
 				var name;
 				var stakes;
 				var duration;
 				var asset;
-
-				console.log(`game${i}_`);
-				
+				// append html
 				$("div.tournaments").append(`
 				<ul id="my_list">
 					<li>
@@ -631,12 +630,12 @@ window.addEventListener('load', function() {
 										<h3 style="text-align: center;"><b style="color:white">Player Predictions</b></h3>
 										
 										<div class="my_box">
-											<p id="game${i}_player_predictions" style="color: black; font-size: 20px; font-weight: bold">Player has made no predictions...</p>				
+											<p id="game${i}_player_predictions" style="color: white; font-size: 20px; font-weight: bold">Player has made no predictions...</p>				
 										</div>
 									</div>
 									<div class="main_box_alt">
 										<div class="input_box">
-											<input type="text" name="predict" id="game${i}_predict" value="" style="background-color: white; width:80%; margin:auto" placeholder="Predicted Price" />
+											<input type="text" name="predict" id="game${i}_predict" value="" style="background-color: black; color:white; border-color:white; width:80%; margin:auto" placeholder="Predicted Price" />
 										</div>
 										<div class="input_box">
 											<button id="game${i}_predict_it" class="button primary fit" style="width:80%;margin: 0 auto;display:block;position:relative;float:none">Predict</button>
@@ -655,20 +654,17 @@ window.addEventListener('load', function() {
 							</div>
 						</div>
 					</li>`);
+				// initialize tournament
 				populate(Tournament, `game${i}_`);
 
 			}
 		}
 	});
 	
-
+	// 
 	function populate(game, div) {
-		if (web3.eth.accounts[0] !== account) {
-			account = web3.eth.accounts[0];
-		}
-		var node = document.getElementById(div + "player_predictions");
 		
-		
+		// get the cost prediction cost
 		game.tournament_instance.cost_to_predict.call(function(err, result) {
 			if (!err) {
 		
@@ -678,6 +674,7 @@ window.addEventListener('load', function() {
 				console.log(err);
 			}
 		});
+		// get the tournament name
 		game.tournament_instance.name.call(function(err, result) {
 			if (!err) {
 				game.name = result;
@@ -690,6 +687,7 @@ window.addEventListener('load', function() {
 				console.log(err);
 			}
 		});
+		// get the tournament asset
 		game.tournament_instance.asset.call(function(err, result) {
 			if (!err) {
 				game.asset = result;
@@ -697,6 +695,7 @@ window.addEventListener('load', function() {
 				console.log(err);
 			}
 		});
+		// get the tournament resolution period
 		game.tournament_instance.resolution_period.call(function(err, result) {
 			if (!err) {
 				var time = result.c;
@@ -706,6 +705,7 @@ window.addEventListener('load', function() {
 				console.log(err);
 			}
 		});
+		// get the tournament duration 
 		game.tournament_instance.competition_duration.call(function(err, result) {
 			if (!err) {
 				var time = result.c;
@@ -718,6 +718,7 @@ window.addEventListener('load', function() {
 				console.log(err);
 			}
 		});
+		// get the price prediction period
 		game.tournament_instance.price_prediction_period.call(function(err, result) {
 			if (!err) {
 				var time = result.c;
@@ -728,14 +729,8 @@ window.addEventListener('load', function() {
 				console.log(err);
 			}
 		});	
-		game.tournament_instance.prediction_number.call(account, function(err, result) {
-			if (!err) {
-				game.num_predictions = result.c[0];
-			} else {
-				console.log(err);
-			}
-		});
 		
+		// countdown for when the tournament starts
 		var tournament_starts = setInterval(function() {
 
 			// Get today's date and time
@@ -760,6 +755,7 @@ window.addEventListener('load', function() {
 			  game.tournament_start = "Tournament has started!";
 			}
 		}, 1000);
+		// countdown for when the price settles 
 		var price_settles = setInterval(function() {
 
 			// Get today's date and time
@@ -784,6 +780,7 @@ window.addEventListener('load', function() {
 			  game.duration = "Price settled:";
 			}
 		}, 1000);
+		// countdown for when the resolution period ends
 		var resolution_period_ends = setInterval(function() {
 
 			// Get today's date and time
@@ -808,15 +805,23 @@ window.addEventListener('load', function() {
 			  game.resolution = "Resolution is over";
 			}
 		}, 1000);
+		// Data that needs to be updated every interval
 		var accountInterval = setInterval(function() {
-			
+			// make sure the correct account variable is set
 			if (web3.eth.accounts[0] !== account) {
 				account = web3.eth.accounts[0];
 			}
+			// get the players number of predictions
+			game.tournament_instance.prediction_number.call(account, function(err, result) {
+				if (!err) {
+					game.num_predictions = result.c[0];
+				} else {
+					console.log(err);
+				}
+			});
+			// get the total tournament balance format to eth
 			game.tournament_instance.total_prediction_stake_pool.call(function(err, result) {
 				if (!err) {
-
-					
 					game.total_eth = (((10 ** result.e) * result.c) / (10 ** 18) ) / 100;
 					var node = document.getElementById(div + "total_eth_staked");
 					while (node.firstChild) {
@@ -827,6 +832,7 @@ window.addEventListener('load', function() {
 					console.log(err);
 				}
 			});
+			// get the settled price and format
 			game.tournament_instance.ETHUSD.call(function(err, result) {
 				if (!err) {
 					game.settlement_price = result;
@@ -840,6 +846,7 @@ window.addEventListener('load', function() {
 					console.log(err);
 				}
 			});
+			// get the number of winners
 			game.tournament_instance.winners.call(function(err, result) {
 				if(!err) {
 					game.winners = result.c[0];
@@ -847,6 +854,7 @@ window.addEventListener('load', function() {
 					console.log(err);
 				}
 			});
+			// get the winning prediction otherwise the most accurately claimed prediction
 			game.tournament_instance.winning_prediction.call(function(err, result) {
 				if (!err) {
 					var _result = result.c[0] / 100;
@@ -859,6 +867,7 @@ window.addEventListener('load', function() {
 					console.log(err);
 				}
 			});
+			// get the number of predictions by the client
 			game.tournament_instance.prediction_number.call(account, function(err, result) {
 				if (!err) {
 					game.num_predictions = result.c[0];
@@ -866,7 +875,9 @@ window.addEventListener('load', function() {
 					console.log(err);
 				}
 			});
+			// get the current time
 			var now = new Date().getTime();
+			// check if its before the tournament start
 			if (now < game.prediction_period) {
 				// status = prediction period
 				var node = document.getElementById(div + "status");
@@ -876,6 +887,7 @@ window.addEventListener('load', function() {
 				node.appendChild(document.createTextNode("Prediction Period || Starts: " + game.prediction_period.toUTCString()));
 				$("#" + div).html(game.name + "<br>" + "Cost to Predict: " + game.cost + " ETH" + "<br>" + game.asset + " || " + "Starts: " + game.tournament_start + " || Price settles: " + game.duration + " || Prize Pool: " + game.total_eth + " ETH");
 			}
+			// check if the tournament is running
 			if (now >= game.prediction_period && now < game.competition_duration) {
 				// status = tournament has started
 				var node = document.getElementById(div + "status");
@@ -885,6 +897,7 @@ window.addEventListener('load', function() {
 				node.appendChild(document.createTextNode("Tournament has started || Ends: " + game.competition_duration.toUTCString()));
 				$("#" + div).html(game.name + "<br>" + "Cost to Predict: " + game.cost + " ETH" + "<br>" + game.asset + " || Tournament has started || Price settles: " + game.duration + " || Prize Pool: " + game.total_eth + " ETH");
 			}
+			// check if the tournament is in resolution
 			if (now >= game.competition_duration && now < game.resolution_period) {
 				// status = resolution period
 				var node = document.getElementById(div + "status");
@@ -894,6 +907,7 @@ window.addEventListener('load', function() {
 				node.appendChild(document.createTextNode("Tournament is in resolution || End Time: " + game.resolution_period.toUTCString()));
 				$("#" + div).html(game.name + "<br>" + "Cost to Predict: " + game.cost + " ETH" + "<br>" + game.asset + " || Resolution Period || End Time: " + game.resolution + " ||  " + game.settled_price + " || Prize Pool: " + game.total_eth + " ETH");
 			}
+			// check if the tournament resolution period is over
 			if (now >= game.resolution_period) {
 				// status = torunament is over!
 				var node = document.getElementById(div + "status");
@@ -903,6 +917,7 @@ window.addEventListener('load', function() {
 				node.appendChild(document.createTextNode("Tournament has ended"));
 				$("#" + div).html(game.name + "<br>" + "Cost to Predict: " + game.cost + " ETH" + "<br>" + game.asset + " || Tournament has ended || " + game.resolution + " || " + game.settled_price + " || Prize Pool: " + game.total_eth + " ETH");
 			}
+			// find the clients most accurate prediction to claim
 			if (isFinite(game._difference) == false) {
 				for (var i=0;i<game.num_predictions;i++) {
 					game.tournament_instance.positions.call(account, i, function(err, result) {
@@ -921,6 +936,7 @@ window.addEventListener('load', function() {
 			}
 			
 		}, 200);
+		// on click send user prediction and staked eth
 		$("#" + div + "predict_it").on('click', function () {
 			game.tournament_instance.predict(document.getElementById(div + "predict").value, {value: game._wei, gas: 3000000}, function (err, result) {
 				if (!err) {
@@ -929,28 +945,24 @@ window.addEventListener('load', function() {
 				console.log(err);
 			});
 		});
+		// when the game is expanded call the players predictions and display them
 		$('#' + div).on('click', function () {
 			var node = document.getElementById(div + "player_predictions");
 			while (node.firstChild) {
 				node.removeChild(node.firstChild);
 			}
-			for (var i=0;i<=game.num_predictions;i++) {
+			for (var i=1;i<=game.num_predictions;i++) {
 				game.tournament_instance.positions.call(account, i, function(err, result) {
 					if (!err) {
-					
-						console.log(result.c[0]);
 						node.appendChild(document.createTextNode(result.c[0] + " ETH/USD "));
 						node.appendChild(document.createElement("br"));
 					}
 				});
 			}
 		});
+		// claims the clients most accurate prediction on click
 		$('#' + div + 'claim_winning_predictions').on('click', function() {
-			
-			
-			console.log(game._difference);
 			game.position_num = game.differences.indexOf(game._difference);
-			console.log(game.position_num)
 			game.tournament_instance.claim_winning_prediction(game.position_num, {gas: 3000000}, function(err, result) {
 				if (!err) {
 					console.log(result);
@@ -959,7 +971,7 @@ window.addEventListener('load', function() {
 				}
 			});
 		});
-	
+		// sends a request for the winning clients winnings to be transfered 
 		$('#' + div + 'collect_winnings').on('click', function() {
 			game.tournament_instance.collect_my_winnings(function (err, result) {
 				if (!err) {
@@ -972,6 +984,7 @@ window.addEventListener('load', function() {
 	}
 });
 
+// filter functionality
 $('select').change(function() {
 	var value = $(this).val().toLowerCase();
 	$('#my_list li').filter(function() {
@@ -986,7 +999,7 @@ $('.search_name').change(function() {
 });
 
 
-
+// close and expand 
 function accordion(id) {
 	var x = document.getElementById(id);
 	if (x.className.indexOf("w3-show") == -1) {
@@ -996,8 +1009,62 @@ function accordion(id) {
 	}
 }
 
+// modal functionality
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 
+
+
+// Get the modal
+var modal_0 = document.getElementById("myModal_0");
+
+// Get the button that opens the modal
+var btn_0 = document.getElementById("myBtn_0");
+
+// Get the <span> element that closes the modal
+var span_0 = document.getElementsByClassName("close_0")[0];
+
+// When the user clicks the button, open the modal 
+btn_0.onclick = function() {
+  modal_0.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span_0.onclick = function() {
+  modal_0.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal_0.style.display = "none";
+  }
+}
 
 
 

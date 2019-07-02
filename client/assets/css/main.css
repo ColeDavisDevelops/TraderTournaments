@@ -329,14 +329,14 @@ button,
 .button {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px #555555;
-  color: #555555 !important; }
+  color: #555555; }
   input[type="submit"]:hover,
   input[type="reset"]:hover,
   input[type="button"]:hover,
   button:hover,
   .button:hover {
-    box-shadow: inset 0 0 0 1px #ce1b28;
-    color: #ce1b28 !important; }
+    box-shadow: inset 0 0 0 1px #880094;
+    color: #880094 !important; }
     input[type="submit"]:hover:active,
     input[type="reset"]:hover:active,
     input[type="button"]:hover:active,
@@ -2391,7 +2391,6 @@ body {
   padding-top: 3.25rem; }
   body:before {
     content: ' ';
-    background-image: url(../../images/bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -2402,7 +2401,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.05; }
+    opacity: 0.9; }
 
 #header {
   -moz-align-items: center;
@@ -2822,7 +2821,7 @@ body.is-menu-visible #menu {
 
 .main_content{
   position: relative;
-  width: 100%;
+  width: 75%;
   height: 100%;
   background: black;
   margin: auto;
@@ -2870,9 +2869,10 @@ body.is-menu-visible #menu {
   border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 10px;
-  background: white;
+  background: black;
   padding-top: 10px;
-  width:70%
+  width:70%;
+  color: white
 }
 
 .main_box_half {
@@ -2955,8 +2955,8 @@ body.is-menu-visible #menu {
 
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
-  background-color: #eee;
-  color: #444;
+  background-color:black;
+  color: white !important;
   cursor: pointer;
   padding-bottom: 18px;
   margin-bottom: 18px;
@@ -2986,14 +2986,7 @@ body.is-menu-visible #menu {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
-.tournaments {
-  border-top: 5mm solid;
-  border-color: black;
-  padding-top: 50px;
-  margin-top: 50px;
-  overflow:auto;
-  background:darkgreen;
-}
+
 
 #my_list { 
   list-style: none;
@@ -3008,4 +3001,126 @@ body.is-menu-visible #menu {
   width:100%;
   height: 50px;
   margin-bottom: 50px;
+  border-color: white;
+  background-color: black;
+}
+
+#landing_header {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin: 0px;
+  padding: 0px;
+  font-family:monospace;
+  color: white;
+
+}
+#landing_header_1 {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin: 0px;
+  padding: 0px;
+  font-family:monospace;
+  color: white;
+
+}
+#landing_header_0 {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  margin-bottom: 30px;
+  margin: 0px;
+  padding: 0px;
+  font-family:monospace;
+  color: white;
+
+}
+
+#my_button {
+  background-color:black
+
+}
+
+#my_body {
+  content: ' ';
+  background-image: url(../../images/buildings.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+#my_body_1 {
+  content: ' ';
+  background-image: url(../../images/lights.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+b {
+  color:white;
+
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: black;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

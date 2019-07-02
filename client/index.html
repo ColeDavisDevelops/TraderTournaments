@@ -14,122 +14,85 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="./assets/css/main.css" />
-		<section id="banner" style="border-bottom: solid">
-					
-			<div class="inner">
-					<h1>No Limit Prediction Tournament</h1>
-				
-			</div>
-					
-		</section>
+
 	</head>
 	
-	<body class="is-preload">
+	<body id="my_body">
 
-		<!-- Header -->
-			<header id="header">
-				<a class="logo" href="index.html">Trader Tournaments</a>
-				<nav>
-					<a href="#menu">Menu</a>
-				</nav>
-			</header>
+        <header id="landing_header">
+       
+            <h1 style="color:white">Welcome to Trader Tournaments</h1>
+            <p>A decentrilized financial application to create and compete in competitions hosted on the Ethereum Blockchain.</p>
+            <div style="text-align: center">
+                <button id="my_button"><a style="color:white" href="#landing_header_0">Learn More</a></button>
+                <button id="my_button" href="./index.html"><a style="color: white" href="./game.html">Get Started</a></button>
+            </div>
+            
+        </header>
+        <header id="landing_header_0" style="text-align: center; background-color:black; padding-left: 50px; padding-right: 50px">
+                <h2 style="margin-bottom: 20px"><b style="color:white">Welcome to the future of decentrilized finance powered by Ethereum</b></h2>
+                <br>
+                <br> 
+                <p>All TraderTournaments are smart contracts living on the Ethereum blockchain. Therefore unlike traditional architectures, customer funds are never in our possession.</p> /
+                <br>
+                <br>
+                <p>TraderTournaments attempts to redefine profitable strategies and reinvent how traders compete. Imagine how our strategy changes when we're no longer tasked with optimally trading an open market protocol and instead faced with outperforming one other competitor. We are no longer solely concerned with making profitable trades but rather only focused on outperforming our opponent.</p> /
+                <br>
+                <br>
+                <p>A  no longer has to compete with every veteran in the open market but can rather compete against whatever player pool in the given TraderTournament.</p> /
+                <br>
+                <br>
+                <p>TraderTournaments allows players to compete without ever signing up to create an account. Simply navigate to our Tournament Lobby and join the action! (metamask required) </p> / 
+                <br>
+                <br>
+                <p>Using our "creator portal" we invite anyone (no coding experience required!) to create their own tournament and collect 50% of the fees generated! Expect more innovative ways to be involved in the future!</p>
+                <br>
+                <br>
+                <a href="#landing_header_1" id="scrollToBottom">&#8595;</a>
+                
+        </header>
 
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="create.html">Host a Tournament</a></li>
-					<li><a href="generic.html">Generic</a></li>
-				</ul>
-			</nav>
+        <header id="landing_header_1" class="more">
+            <div style="background-color: black; width:100%; padding:75px">
+                <h2 style="color: white; padding-bottom:20px">Our First Tournament Format</h2>
+                <p>Players compete in our "No Limit Predictions" tournament format by most accurately predicting the price of a given asset at a future date. Players pay a given buyin for each prediction they make that gets added to the total prize pool. Once the price of the asset has settled at the given future date, the player whom predicted the most accurate price is allocated the balance of the contract minus our 2% fee (equally distributed between TraderTournaments and the Tournament Creator).</p>
+                <br>
+                <br>
+                <p>Find more information on how to compete <a href="game.html#instructions">here!</a></p>
+                <br>
+                <br>
+                <p>TraderTournaments is always working on new formats for our players so stay tuned for more!</p>
+            </div>
+            
+        </header>
 
-		<!-- Heading -->
-			
-			<div style="text-align: center;margin:auto; width: 50%; border: 1mm dotted;padding:30px; margin-bottom: 50px; margin-top: 50px">
-				<h3 style="margin-bottom: 20px"><b>Instructions</b></h3>
-				
-				<p><b>Step One:</b> <br> Before a tournament has started, players may fill out a predicted price and click "Predict" in order to send a prediction and staked ETH to the Tournament Contract. Players may make as many predictions as they wish.</p><br>
-				<p><b>Step Two:</b> <br> After the tournament has ended, a settlement price will be recorded and players can press "Claim Winning Prediciton" in order to claim their most accurate prediction as the winner. The current closest claimed prediction will be on display so players only have to claim if their prediciton is more accurate! </p><br>
-				<p><b>Step Three:</b> <br> After the 24 hour resolution period has concluded, the player who claimed the prediction closest to the settlement price will be eligible to withdraw their winnings!</p></p>
-				<p><b style="margin-bottom:20px">Note: A 2% fee is applied to the total prize pool to be collected by Trader Tournaments and the affiliated Tournament creator. We welcome all to create, promote, and profit from their own custom Tournaments <a href="#creator">here!</a></b>
-			</div>
- 											
-		<!-- Main -->
-			
-			<h3 style="text-align: center"><b>Filter by Name<b></h3>
-            <input name="searchName" type="text"  id="my_input" class="search_name" style="width:33%" placeholder="Search for tournament name..."/>
-			
-			<div class=tournaments>
-				<h2 style="text-align: center; color: white; margin-bottom: 50px">Tournament Lobby</h2>
-				<ul id="my_list">
-					<div class=tournament_list>
-						
-					</div>
-					
-					
-				</ul>
-			</div>
-			
-
-		
-	
-		
-			
- 		
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner" id="creator">
-							<h1 style="text-align: center; margin-bottom: 20px;">Create your own Tournament!</h1>
-							<div style="text-align: center;margin:auto; width: 100%; border: 1mm solid;padding:50px; margin-bottom: 50px" >
-								<h3 style="text-align: center; margin-bottom: 10px"><b>1. Create a Tournament Name</b></h3>
-								<input name="Tournament_name" type="text" min="0" id="my_input" style="width:33%" placeholder="... Tournament Name here!"/>
-								<h3 style="text-align: center; margin-bottom: 10px"><b>2. Select the Tournament Asset</b></h3>
-								<select id="Tournament_asset" style="margin: auto;margin-bottom:50px; width: 33%">
-									<option value="Ethereum">Ethereum</option>
-								</select>
-								<h3 style="text-align: center; margin-bottom: 10px"><b>3. Choose Tournament Duration</b></h3>
-								<select id="tournament_duration" style="margin: auto;margin-bottom:50px; width: 33%">
-									<option value=1>Hourly</option>
-									<option value=1440>Daily</option>
-									<option value=1080>Weekly</option>
-									<option value=43800>Monthly</option>
-								</select>
-								<h3 style="text-align: center; margin-bottom: 10px"><b>4. Choose when the Tournament starts (minutes)<b></h3>
-								<input style="width:33%; color:black" name="Tournament_start" type="number" min="0" id="my_input" placeholder="... time to start in minutes"/>
-								
-								<h3 style="text-align: center; margin-bottom: 10px"><b>5. Choose the cost to predict (wei)<b></h3>
-								<input style="width:33%; color:black" name="prediction_cost" type="number" min="1000000000000000" id="my_input" placeholder="... Prediciton cost in wei"/>
-								
-								<button id="test" class="button primary fit">Create Tournament</button>
-				
-							</div>
-					<div class="copyright">
-								
-					</div>
-					<div class="content">
-						<section>
-							<h3>About</h3>	
-							<p>Trader Tournaments seeks to make innovative competitive mediums for participants to exercise skills against one another. Hosting these competitions on Ethereum ensures that Trader Tournaments NEVER has access to user funds. We believe its better to have funds controlled by lines of code as opposed to a human trust element which historically has shown to lead to corruption.<br><br>  </p>
-							<h3>Fees</h3>
-							<p>At the valid conclusion of a tournament, a 2% fee is reserved to be equally distributed between Trader Tournaments and the Tournament Creator. We are excited to provide anyone the ability to create and promote their own custom tournaments! No coding experience needed, simply use our Tournament Creator portal, and whichever address you use to create a tournament will be credited half the fees at the tournaments conclusion!</p>
-							
-							
-						</section>
-						<section>
-							<h3>Social</h3>
-							<ul class="plain">
-								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-							</ul>
-						</section>
-						
-					</div>
-					
-				</div>
-			</footer>
+        
+        <!-- Footer -->
+			<footer id="footer" style="background-color:black; color: white">
+                <div class="inner" id="creator">
+                            
+                    <div class="copyright">
+                                
+                    </div>
+                    <div class="content">
+                        <section>
+                            <h3>Fees</h3>
+                            <p>At the valid conclusion of a tournament, a 2% fee is reserved to be equally distributed between Trader Tournaments and the Tournament Creator. We are excited to provide anyone the ability to create and promote their own custom tournaments! No coding experience needed, simply use our Tournament Creator portal, and whichever address you use to create a tournament will be credited half the fees at the tournaments conclusion!</p>
+                            
+                            
+                        </section>
+                        <section>
+                            <h3>Join the discussion</h3>
+                            <ul class="plain">
+                                <li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                                <p>Send us an email! tradertournaments@gmail.com</p>
+                            </ul>
+                        </section>
+                        
+                    </div>
+                    
+                </div>
+            </footer>
 
         <!-- Scripts -->
 			<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>

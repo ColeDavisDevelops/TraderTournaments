@@ -3007,49 +3007,33 @@ body.is-menu-visible #menu {
 }
 
 #landing_header {
+  margin-top:200px;
+  margin-bottom:300px;
   text-align: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  margin-bottom: 30px;
-  margin: 0px;
-  padding: 0px;
-  font-family:monospace;
-  color: white;
+  color:white;  
+  height:100%;
 
 }
 #landing_header_1 {
+
+  padding-left:0;
+  padding-right:0;
+  margin-top:200px;
+  margin-bottom:200px;
+
+  
   text-align: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  margin-bottom: 30px;
-  margin: 0px;
-  padding: 0px;
-  font-family:monospace;
-  color: white;
+  color:white;
 
 }
 #landing_header_0 {
+  padding-top: 100px;
+  padding-bottom: 100px;
   text-align: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  margin-bottom: 30px;
-  margin: 0px;
-  padding: 0px;
-  font-family:monospace;
-  color: white;
-
+  color:white;
+  height:100%;
+  padding-left:0;
+  padding-right:0;
 }
 
 #my_button {

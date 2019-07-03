@@ -951,9 +951,10 @@ window.addEventListener('load', function() {
 			while (node.firstChild) {
 				node.removeChild(node.firstChild);
 			}
-			for (var i=1;i<=game.num_predictions;i++) {
+			for (var i=0;i<=game.num_predictions;i++) {
 				game.tournament_instance.positions.call(account, i, function(err, result) {
 					if (!err) {
+						
 						node.appendChild(document.createTextNode(result.c[0] + " ETH/USD "));
 						node.appendChild(document.createElement("br"));
 					}

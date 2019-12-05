@@ -1,12 +1,9 @@
 window.addEventListener('load', function() {
 	// WEB3 CONNECTION
 	if (typeof web3 !== 'undefined') {
-	
 		web3 = new Web3(web3.currentProvider);
 	} else {
-
 		// set the provider you want from Web3.providers
-
 	}
 	var web3 = window.web3;
 	// set the client account
@@ -93,7 +90,7 @@ window.addEventListener('load', function() {
 			"type": "event"
 		}
 	]);
-	var factory_address = "0xcaa36e15bd4f2b3243c3afd265fd086c1c5c6b05";
+	var factory_address = "0x4e885a1ba0e84b0c0115bdfe3f0a1d9c985cd16a";
 	var factory_instance = factory_abi.at(factory_address);
 
 	// set tournament_abi for factory
@@ -557,7 +554,10 @@ window.addEventListener('load', function() {
 
 	// on click creates a tournament_instance with user inputs
 	$("#createTournament").on('click', function() {
-		factory_instance.createToken(document.getElementsByName("Tournament_name")[0].value, document.getElementById("Tournament_asset").value, document.getElementsByName("prediction_cost")[0].value, document.getElementsByName("Tournament_start")[0].value, document.getElementById("tournament_duration").value, function(err, result) {
+
+		var cost_in_wei = (document.getElementsByName("prediction_cost")[0].value * 1000000000000000000);
+		console.log(cost_in_wei);
+		factory_instance.createToken(document.getElementsByName("Tournament_name")[0].value, document.getElementById("Tournament_asset").value, cost_in_wei, document.getElementsByName("Tournament_start")[0].value, document.getElementById("tournament_duration").value, function(err, result) {
 			if (!err) {
 				console.log(result);
 			}
@@ -581,9 +581,9 @@ window.addEventListener('load', function() {
 				$("div.tournaments").append(`
 				<ul id="my_list">
 					<li>
-						<button id="game${i}_" class="accordion" onclick="accordion('Game${i}')">MetaMask not detected! </button>
+						<button id="game${i}_" class="accordion" onclick="accordion('Game${i}')">No Wallet detected!</button>
 								
-						<div id="Game${i}" class="w3-container w3-hide">
+						<div id="Game${i}" class="w3-container w3-hide" style="width:100%; padding:0">
 
 						
 							<div class="main_content">
@@ -635,7 +635,7 @@ window.addEventListener('load', function() {
 									</div>
 									<div class="main_box_alt">
 										<div class="input_box">
-											<input type="text" name="predict" id="game${i}_predict" value="" style="background-color: black; color:white; border-color:white; width:80%; margin:auto" placeholder="Predicted Price" />
+											<input type="text" name="predict" id="game${i}_predict" value="" style="background-color: black; color:white; border-color:white; width:80%; margin:auto" placeholder="Prediction Price (whole number)" />
 										</div>
 										<div class="input_box">
 											<button id="game${i}_predict_it" class="button primary fit" style="width:80%;margin: 0 auto;display:block;position:relative;float:none">Predict</button>
@@ -811,18 +811,13 @@ window.addEventListener('load', function() {
 			if (web3.eth.accounts[0] !== account) {
 				account = web3.eth.accounts[0];
 			}
-			// get the players number of predictions
-			game.tournament_instance.prediction_number.call(account, function(err, result) {
-				if (!err) {
-					game.num_predictions = result.c[0];
-				} else {
-					console.log(err);
-				}
-			});
 			// get the total tournament balance format to eth
 			game.tournament_instance.total_prediction_stake_pool.call(function(err, result) {
 				if (!err) {
-					game.total_eth = (((10 ** result.e) * result.c) / (10 ** 18) ) / 100;
+					var wei = result.toNumber();
+					game.total_eth = wei / (10 ** 18);
+					
+				
 					var node = document.getElementById(div + "total_eth_staked");
 					while (node.firstChild) {
 						node.removeChild(node.firstChild);
@@ -862,7 +857,7 @@ window.addEventListener('load', function() {
 					while (node.firstChild) {
 						node.removeChild(node.firstChild);
 					}
-					node.appendChild(document.createTextNode("winners: " + game.winners + " || " + result.c[0] + " ETH/USD"));
+					node.appendChild(document.createTextNode("winners: " + game.winners + " || " + _result + " ETH/USD"));
 				} else {
 					console.log(err);
 				}
@@ -919,7 +914,7 @@ window.addEventListener('load', function() {
 			}
 			// find the clients most accurate prediction to claim
 			if (isFinite(game._difference) == false) {
-				for (var i=0;i<game.num_predictions;i++) {
+				for (var i=0;i<=game.num_predictions;i++) {
 					game.tournament_instance.positions.call(account, i, function(err, result) {
 						if (!err) {
 							game.differences.push(Math.abs(result.c[0] - game.settled_price));
@@ -932,7 +927,6 @@ window.addEventListener('load', function() {
 				}
 				
 				game._difference = Math.min.apply(Math, game.differences);
-				
 			}
 			
 		}, 200);
@@ -964,6 +958,7 @@ window.addEventListener('load', function() {
 		// claims the clients most accurate prediction on click
 		$('#' + div + 'claim_winning_predictions').on('click', function() {
 			game.position_num = game.differences.indexOf(game._difference);
+			console.log(game.position_num);
 			game.tournament_instance.claim_winning_prediction(game.position_num, {gas: 3000000}, function(err, result) {
 				if (!err) {
 					console.log(result);

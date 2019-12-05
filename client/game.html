@@ -20,9 +20,11 @@
 	<body class="is-preload" id="my_body_1">
 
 		<!-- Header -->
+			
 			<header id="header">
-				<button id="myBtn_0" style="background-color:black; color:green; width: 100%">How to Play</button>
-				<button id="myBtn" style="background-color:black; color:green; width: 100%">Host a Tournament here!</button>
+				<button onclick="window.location.href = 'https://tradertournaments.surge.sh';" style="text-align: center; width:100%; background-color:black; color:lightblue" >Trader Tournaments</button>
+				<button id="myBtn_0" style="background-color:black; color:lightblue; width: 100%">How to Play</button>
+				<button id="myBtn" style="background-color:black; color:lightblue; width: 100%">Host a Tournament here!</button>
 				
 
 			</header>
@@ -34,9 +36,9 @@
 									
 		<!-- Main -->
 			
-	
-
-			<h3 style="text-align: center; margin-top: 50px"><b style="color:black">Filter by Name<b></h3>
+			
+			<h1 style="text-align: center;width: 100%; color:red; background-color: black">WARNING: public beta testing, please treat this as an unsafe and untested environment!</h1>
+			<h3 style="text-align: center; margin-top: 50px"><b style="color:white">Filter by Name<b></h3>
 			<input name="searchName" type="text"  id="my_input" class="search_name" style="width:33%" placeholder="Search for tournament name..."/>
 			
 			
@@ -55,6 +57,7 @@
 						<h3 style="text-align: center; margin-bottom: 10px"><b>3. Choose Tournament Duration</b></h3>
 						<select id="tournament_duration" style="margin: auto;margin-bottom:50px; width: 33%; border-color: white">
 							<option value=60>Hourly</option>
+							<option value=180>Three Hours</option>
 							<option value=1440>Daily</option>
 							<option value=1080>Weekly</option>
 							<option value=43800>Monthly</option>
@@ -62,8 +65,8 @@
 						<h3 style="text-align: center; margin-bottom: 10px"><b>4. Choose when the Tournament starts (minutes)<b></h3>
 						<input style="width:33%; color:white" name="Tournament_start" type="number" min="0" id="my_input" placeholder="... time to start in minutes"/>
 						
-						<h3 style="text-align: center; margin-bottom: 10px"><b>5. Choose the cost to predict (wei)<b></h3>
-						<input style="width:33%; color:white" name="prediction_cost" type="number" min="1000000000000000" id="my_input" placeholder="... Prediciton cost in wei"/>
+						<h3 style="text-align: center; margin-bottom: 10px"><b>5. Choose the cost to predict (ETH)<b></h3>
+						<input style="width:33%; color:white" name="prediction_cost" type="number" min=".001" id="my_input" placeholder="... Prediciton cost in eth"/>
 						
 						<button id="createTournament" class="button primary fit">Create Tournament</button>
 		
@@ -79,9 +82,9 @@
 					<div id="instructions" style="background-color: black; width:100%;margin:auto; padding:20px;">
 						<h2 style="text-align: center;margin-bottom: 20px"><b style=" color:white">How to Compete</b></h2>
 						
-						<p><b>Step One:</b> <br> Before a tournament has started, players may fill out a predicted price and click "Predict" in order to send a prediction and staked ETH to the Tournament Contract. Players may make as many predictions as they wish.</p><br>
-						<p><b>Step Two:</b> <br> After the tournament has ended, a settlement price will be recorded and players can press "Claim Winning Prediciton" in order to claim their most accurate prediction as the winner. The current closest claimed prediction will be on display so players only have to claim if their prediciton is more accurate! </p><br>
-						<p><b>Step Three:</b> <br> After the 24 hour resolution period has concluded, the player who claimed the prediction closest to the settlement price will be eligible to withdraw their winnings!</p><p></p>        
+						<p><b>Step One:</b> <br> Before a tournament has started, predictions may be made by entering a prediction price and clicking "Predict". Doing so will send your predicted price along with your buyin (the cost to predict) to the tournament contract. Players may make as many predictions as they wish before the tournament starts. Once the tournament starts, no more predictions will be accepted. NOTICE: Predictions should be made to the nearest whole number!</p><br>
+						<p><b>Step Two:</b> <br> At the conclusion of a tournament, a settlement price will be recorded and a 24 hour resolution period will begin. During the resolution period players with accurate predictions should press "claim winning predictions" in order to claim their most accurate prediction as the winning prediction. The current winning prediction will be on active display so players will know only to claim a winning prediction if their prediction is more accurate! </p><br>
+						<p><b>Step Three:</b> <br> Once the 24 hour resolution period concludes; Any player who claimed the winning prediction is eligible to withdraw the total contract balance minus a flat 2% fee. If there is more than one winner, then the winnings will be divided equally among them.</p>     
 						<p><b style="margin-bottom:20px">Note: A 2% fee is applied to the total prize pool to be collected by Trader Tournaments and the affiliated Tournament creator. We welcome all to create, promote, and profit from their own custom Tournaments <a href="#creator">here!</a></b></p>
 						
 					</div>
@@ -115,6 +118,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src='../node_modules/bignumber.js/bignumber.js'></script>
 
             <script src="./app.js"></script>
             
